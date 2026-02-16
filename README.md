@@ -1,4 +1,4 @@
-# 🌐 FórumHub - Proyecto Final AluraLatam
+# 🌐 ForoHub - Proyecto Final AluraLatam
 
 ![Java](https://img.shields.io/badge/Java-17-blue?logo=java&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.10-green?logo=spring&logoColor=white)
