@@ -9,7 +9,7 @@
 ---
 
 ## 📌 Descripción
-FórumHub es una aplicación web de foro educativo donde los usuarios pueden registrarse, iniciar sesión y gestionar tópicos relacionados con cursos específicos.  
+ForoHub es una aplicación web de foro educativo donde los usuarios pueden registrarse, iniciar sesión y gestionar tópicos relacionados con cursos específicos.  
 Cuenta con **CRUD completo** para usuarios, cursos y tópicos, utilizando **JWT** para autenticación y control de acceso a los endpoints.
 
 El proyecto incluye:
