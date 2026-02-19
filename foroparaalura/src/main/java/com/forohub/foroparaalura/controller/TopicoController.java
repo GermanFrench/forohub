@@ -4,6 +4,7 @@ import com.forohub.foroparaalura.dto.DatosActualizarTopico;
 import com.forohub.foroparaalura.dto.DatosRegistroTopico;
 import com.forohub.foroparaalura.dto.TopicoResponseDto;
 import com.forohub.foroparaalura.service.TopicoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/topicos")
+@SecurityRequirement(name = "bearer-key")
 public class TopicoController {
 
     private final TopicoService topicoService;
