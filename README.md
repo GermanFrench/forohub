@@ -52,11 +52,10 @@ spring.datasource.url=jdbc:mysql://localhost:3306/foroparaalura
 spring.datasource.username=root
 spring.datasource.password=root
 
-spring.jpa.hibernate.ddl-auto=update
+spring.jpa.hibernate.ddl-auto=validate
 spring.jpa.show-sql=true
 
-jwt.secret=tu_clave_super_segura
-jwt.expiration=3600000
+api.security.token.secret=tu_clave_super_segura
 ```
 
 3. **Ejecutar la aplicación:**

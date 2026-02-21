@@ -12,9 +12,30 @@ jobs:
     permissions:
       contents: read
 
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: foroparaalura
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     defaults:
       run:
         working-directory: foroparaalura
+
+    env:
+      DB_URL: jdbc:mysql://localhost:3306/foroparaalura
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_URLTEST: jdbc:mysql://localhost:3306/foroparaalura
+      JWT_SECRET: ci-test-secret-key-not-for-production
 
     steps:
       - name: Checkout code
