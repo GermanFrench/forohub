@@ -12,20 +12,8 @@
     <artifactId>foroparaalura</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>foroparaalura</name>
-    <description>Projecto final para AluraLatam</description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
+    <description>Proyecto final para AluraLatam</description>
+    <url>https://github.com/GermanFrench/forohub</url>
     <properties>
         <java.version>17</java.version>
     </properties>

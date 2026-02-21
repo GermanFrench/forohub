@@ -5,6 +5,7 @@
 ![MySQL](https://img.shields.io/badge/MySQL-8-orange?logo=mysql&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-auth-red)
 ![Maven](https://img.shields.io/badge/Maven-3.9.2-purple?logo=apachemaven&logoColor=white)
+![CI](https://github.com/GermanFrench/forohub/actions/workflows/ci.yml/badge.svg)
 
 ---
 
@@ -35,122 +36,141 @@ El proyecto incluye:
 
 ## ⚙ Instalación y ejecución
 
-1. **Clonar el repositorio:**
-```bash
-git clone https://github.com/tuusuario/foroparaalura.git
-Configurar la base de datos en src/main/resources/application.properties:
+> ℹ️ El proyecto Maven se encuentra dentro de la carpeta `foroparaalura/`.
 
-properties
-Copiar código
+1. **Clonar el repositorio:**
+
+```bash
+git clone https://github.com/GermanFrench/forohub.git
+cd forohub/foroparaalura
+```
+
+2. **Configurar la base de datos en `foroparaalura/src/main/resources/application.properties`:**
+
+```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/foroparaalura
 spring.datasource.username=root
 spring.datasource.password=root
 
-spring.jpa.hibernate.ddl-auto=update
+spring.jpa.hibernate.ddl-auto=validate
 spring.jpa.show-sql=true
 
-jwt.secret=tu_clave_super_segura
-jwt.expiration=3600000
-Ejecutar la aplicación:
+api.security.token.secret=tu_clave_super_segura
+```
 
-bash
-Copiar código
-mvn spring-boot:run
-🔑 Autenticación (JWT)
+3. **Ejecutar la aplicación:**
+
+```bash
+./mvnw spring-boot:run
+```
+
+---
+
+## 🔑 Autenticación (JWT)
 Para interactuar con los endpoints protegidos, primero debes registrarte y luego iniciar sesión para obtener un token JWT.
 
-Login
+**Login**
 
-URL: POST http://localhost:8080/login
+URL: `POST http://localhost:8080/login`
 
 Body JSON:
 
-json
-Copiar código
+```json
 {
   "username": "usuario@example.com",
   "password": "tu_contraseña"
 }
+```
+
 Respuesta:
 
-json
-Copiar código
+```json
 {
   "token": "<JWT_TOKEN>"
 }
-Enviar token en solicitudes protegidas
+```
 
-http
-Copiar código
+**Enviar token en solicitudes protegidas:**
+
+```http
 Authorization: Bearer <JWT_TOKEN>
-📋 Endpoints principales
-Usuarios
-POST /usuarios → Registrar usuario
+```
 
-GET /usuarios → Listar usuarios
+---
 
-PUT /usuarios/{id} → Actualizar usuario
+## 📋 Endpoints principales
 
-DELETE /usuarios/{id} → Desactivar usuario (soft delete)
+**Usuarios**
+- `POST /usuarios` → Registrar usuario
+- `GET /usuarios` → Listar usuarios
+- `PUT /usuarios/{id}` → Actualizar usuario
+- `DELETE /usuarios/{id}` → Desactivar usuario (soft delete)
 
-Cursos
-POST /cursos → Crear curso
+**Cursos**
+- `POST /cursos` → Crear curso
+- `GET /cursos` → Listar cursos
+- `PUT /cursos/{id}` → Actualizar curso
+- `DELETE /cursos/{id}` → Eliminar curso
 
-GET /cursos → Listar cursos
+**Tópicos**
+- `POST /topicos` → Crear tópico
+- `GET /topicos` → Listar tópicos paginados
+- `GET /topicos/todos` → Listar todos los tópicos
+- `GET /topicos/primeros` → Listar primeros 10 tópicos
+- `GET /topicos/buscar?curso=Matematica&anio=2026` → Filtrar por curso y año
+- `GET /topicos/{id}` → Obtener tópico por id
+- `PUT /topicos/{id}` → Actualizar tópico
+- `DELETE /topicos/{id}` → Eliminar tópico (soft delete)
 
-PUT /cursos/{id} → Actualizar curso
+---
 
-DELETE /cursos/{id} → Eliminar curso
+## 🧪 Pruebas
+Se recomienda usar Postman o Insomnia para probar los endpoints.  
+Recuerda enviar siempre el token JWT en el header `Authorization` para endpoints protegidos.
 
-Tópicos
-POST /topicos → Crear tópico
+Para ejecutar los tests del proyecto:
 
-GET /topicos → Listar tópicos paginados
+```bash
+cd foroparaalura
+./mvnw test
+```
 
-GET /topicos/todos → Listar todos los tópicos
+---
 
-GET /topicos/primeros → Listar primeros 10 tópicos
+## 📂 Estructura del proyecto
 
-GET /topicos/buscar?curso=Matematica&anio=2026 → Filtrar por curso y año
+```
+forohub/
+└─ foroparaalura/               # Módulo Maven principal
+   ├─ src/main/java/com/forohub/foroparaalura
+   │  ├─ controller/            # Controladores REST
+   │  ├─ domain/                # Entidades JPA
+   │  ├─ dto/                   # Data Transfer Objects
+   │  ├─ infra/security/        # Seguridad, JWT y filtros
+   │  ├─ repository/            # Repositorios JPA
+   │  └─ service/               # Lógica de negocio
+   ├─ src/main/resources/
+   │  ├─ application.properties # Configuración de la aplicación
+   │  └─ db/migration/          # Migraciones Flyway
+   └─ pom.xml
+```
 
-GET /topicos/{id} → Obtener tópico por id
+---
 
-PUT /topicos/{id} → Actualizar tópico
+## 👨‍💻 Autor
+Germán French  
+[LinkedIn](https://www.linkedin.com/in/german-french/)
 
-DELETE /topicos/{id} → Eliminar tópico (soft delete)
+---
 
-🧪 Pruebas
-Se recomienda usar Postman o Insomnia para probar los endpoints.
-Recuerda enviar siempre el token JWT en el header Authorization para endpoints protegidos.
-
-📂 Estructura del proyecto
-bash
-Copiar código
-foroparaalura/
-├─ src/main/java/com/forohub/foroparaalura
-│  ├─ controller/        # Controladores REST
-│  ├─ domain/            # Entidades JPA
-│  ├─ dto/               # Data Transfer Objects
-│  ├─ infra/security/    # Seguridad, JWT y filtros
-│  ├─ repository/        # Repositorios JPA
-│  └─ service/           # Lógica de negocio
-├─ src/main/resources/
-│  ├─ application.properties
-│  └─ db/migration/      # Migraciones Flyway
-👨‍💻 Autor
-Germán French
-LinkedIn
-
-📜 Licencia
+## 📜 Licencia
 Proyecto de aprendizaje, no comercial.
 
-💡 Notas finales
-Todos los endpoints protegidos requieren JWT válido.
+---
 
-Se implementó soft delete para tópicos y usuarios.
-
-La contraseña de usuarios se guarda encriptada con BCrypt.
-
-JWT tiene expiración configurable en application.properties.
-
-Se recomienda probar todas las funcionalidades con Postman/Insomnia antes de subir a producción.
+## 💡 Notas finales
+- Todos los endpoints protegidos requieren JWT válido.
+- Se implementó soft delete para tópicos y usuarios.
+- La contraseña de usuarios se guarda encriptada con BCrypt.
+- JWT tiene expiración configurable en `foroparaalura/src/main/resources/application.properties`.
+- Se recomienda probar todas las funcionalidades con Postman/Insomnia antes de subir a producción.
